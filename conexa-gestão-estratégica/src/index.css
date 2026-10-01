@@ -1,0 +1,41 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-sans: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-body: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  --color-conexa-offwhite: #F6F5F0;
+  --color-conexa-deep: #123D35;
+  --color-conexa-forest: #1D5146;
+  --color-conexa-charcoal: #10211E;
+  --color-conexa-muted: #68716E;
+  --color-conexa-gold: #B5A276;
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background-color: #F6F5F0;
+  color: #10211E;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6, .font-heading {
+  font-family: 'Manrope', sans-serif;
+  letter-spacing: -0.02em;
+}
+
+/* Subtle custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #F6F5F0;
+}
+::-webkit-scrollbar-thumb {
+  background: #1D5146;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #123D35;
+}

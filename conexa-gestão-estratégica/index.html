@@ -1,0 +1,2385 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CONEXA | Gestão Estratégica</title>
+  <meta name="description" content="A Conexa organiza processos, estrutura sua operação comercial e implementa tecnologia para sua empresa funcionar melhor. Do diagnóstico à implementação prática.">
+  <meta property="og:title" content="CONEXA | Gestão Estratégica">
+  <meta property="og:description" content="Sua empresa vende. Mas sua operação está preparada para crescer? Conheça a metodologia prática da Conexa.">
+  <meta property="og:type" content="website">
+
+  <!-- Tipografia Oficial: Manrope (Títulos) e DM Sans (Textos) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Manrope:wght@300..800&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+       1. VARIÁVEIS DE DESIGN & PALETA OFICIAL CONEXA
+       ========================================================================== */
+    :root {
+      --conexa-offwhite: #F6F5F0;
+      --conexa-deep: #123D35;
+      --conexa-forest: #1D5146;
+      --conexa-charcoal: #10211E;
+      --conexa-muted: #68716E;
+      --conexa-gold: #B5A276;
+      --conexa-white: #FFFFFF;
+      --conexa-surface-light: #EDECE6;
+      
+      --font-display: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --font-body: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-lg: 16px;
+      --radius-xl: 20px;
+      
+      --transition-fast: 0.15s ease;
+      --transition-normal: 0.25s ease;
+    }
+
+    /* Reset & Base */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background-color: var(--conexa-offwhite);
+      color: var(--conexa-charcoal);
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    ::selection {
+      background-color: var(--conexa-deep);
+      color: var(--conexa-offwhite);
+    }
+
+    h1, h2, h3, h4, h5, h6, .font-heading {
+      font-family: var(--font-display);
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font-family: inherit;
+      cursor: pointer;
+      border: none;
+      background: none;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* Utilitários de Layout */
+    .container {
+      width: 100%;
+      max-width: 1240px;
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+
+    .section-py {
+      padding-top: 96px;
+      padding-bottom: 96px;
+    }
+
+    @media (max-width: 768px) {
+      .section-py {
+        padding-top: 64px;
+        padding-bottom: 64px;
+      }
+    }
+
+    .kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      margin-bottom: 12px;
+    }
+
+    .kicker::before {
+      content: '';
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background-color: var(--conexa-gold);
+    }
+
+    /* Botões */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      font-weight: 600;
+      font-size: 0.9375rem;
+      padding: 14px 26px;
+      border-radius: var(--radius-sm);
+      transition: all var(--transition-normal);
+      white-space: nowrap;
+    }
+
+    .btn:active {
+      transform: scale(0.98);
+    }
+
+    .btn-primary {
+      background-color: var(--conexa-deep);
+      color: var(--conexa-white);
+      box-shadow: 0 4px 12px rgba(18, 61, 53, 0.15);
+    }
+
+    .btn-primary:hover {
+      background-color: var(--conexa-forest);
+      box-shadow: 0 6px 16px rgba(18, 61, 53, 0.25);
+    }
+
+    .btn-outline {
+      background-color: transparent;
+      color: var(--conexa-deep);
+      border: 1px solid rgba(18, 61, 53, 0.25);
+    }
+
+    .btn-outline:hover {
+      background-color: rgba(18, 61, 53, 0.04);
+      border-color: var(--conexa-deep);
+    }
+
+    .btn-gold {
+      background-color: var(--conexa-gold);
+      color: var(--conexa-charcoal);
+      font-weight: 700;
+      box-shadow: 0 4px 14px rgba(181, 162, 118, 0.3);
+    }
+
+    .btn-gold:hover {
+      background-color: #c4b387;
+    }
+
+    /* ==========================================================================
+       2. NAVBAR
+       ========================================================================== */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 12px 0;
+      transition: all var(--transition-normal);
+    }
+
+    .navbar.scrolled {
+      background-color: rgba(246, 245, 240, 0.96);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(18, 61, 53, 0.08);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+    }
+
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand-lockup {
+      display: inline-flex;
+      align-items: center;
+      text-decoration: none;
+      padding: 2px 0;
+    }
+
+    .brand-logo {
+      height: 105px;
+      max-height: 115px;
+      width: auto;
+      object-fit: contain;
+      display: block;
+      transition: all var(--transition-normal);
+      filter: drop-shadow(0 3px 10px rgba(0,0,0,0.08));
+      transform: scale(1.15);
+      transform-origin: left center;
+    }
+
+    .navbar.scrolled .brand-logo {
+      height: 80px;
+      max-height: 85px;
+      transform: scale(1.05);
+    }
+
+    @media (max-width: 768px) {
+      .brand-logo {
+        height: 75px;
+        max-height: 82px;
+        transform: scale(1.1);
+      }
+      .navbar.scrolled .brand-logo {
+        height: 60px;
+        max-height: 66px;
+        transform: scale(1);
+      }
+    }
+
+    .brand-lockup:hover .brand-logo {
+      transform: scale(1.2);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-link {
+      font-size: 0.9375rem;
+      font-weight: 500;
+      color: rgba(16, 33, 30, 0.85);
+      position: relative;
+      padding: 4px 0;
+      transition: color var(--transition-fast);
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: var(--conexa-deep);
+      transition: width var(--transition-normal);
+    }
+
+    .nav-link:hover {
+      color: var(--conexa-deep);
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    .hamburger-btn {
+      display: none;
+      padding: 8px;
+      color: var(--conexa-charcoal);
+    }
+
+    /* Mobile Drawer */
+    .mobile-drawer {
+      display: none;
+      position: fixed;
+      top: 72px;
+      left: 0;
+      right: 0;
+      background-color: var(--conexa-offwhite);
+      border-bottom: 1px solid rgba(18, 61, 53, 0.15);
+      padding: 24px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+      z-index: 999;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .mobile-drawer.open {
+      display: flex;
+    }
+
+    @media (max-width: 900px) {
+      .nav-links, .nav-actions .btn {
+        display: none;
+      }
+      .hamburger-btn {
+        display: block;
+      }
+    }
+
+    /* ==========================================================================
+       3. HERO SECTION
+       ========================================================================== */
+    .hero-section {
+      padding-top: 140px;
+      padding-bottom: 90px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    @media (max-width: 992px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+      .hero-section {
+        padding-top: 110px;
+        padding-bottom: 60px;
+      }
+    }
+
+    .hero-title {
+      font-size: 3.5rem;
+      font-weight: 800;
+      line-height: 1.12;
+      color: var(--conexa-charcoal);
+      margin-bottom: 24px;
+    }
+
+    .hero-highlight {
+      color: var(--conexa-deep);
+      position: relative;
+      display: inline-block;
+    }
+
+    .hero-highlight::after {
+      content: '';
+      position: absolute;
+      bottom: 2px;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background-color: var(--conexa-gold);
+      border-radius: 2px;
+      opacity: 0.8;
+    }
+
+    @media (max-width: 768px) {
+      .hero-title {
+        font-size: 2.25rem;
+      }
+    }
+
+    .hero-desc {
+      font-size: 1.1875rem;
+      color: var(--conexa-muted);
+      margin-bottom: 36px;
+      max-width: 580px;
+      line-height: 1.6;
+    }
+
+    .hero-cta-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+
+    .hero-pillars-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      padding-top: 24px;
+      border-top: 1px solid rgba(18, 61, 53, 0.1);
+      max-width: 540px;
+    }
+
+    .pillar-item-title {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--conexa-charcoal);
+    }
+
+    .pillar-item-sub {
+      font-size: 0.75rem;
+      color: var(--conexa-muted);
+    }
+
+    /* Mockup Operacional */
+    .dashboard-mockup {
+      background-color: var(--conexa-white);
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(18, 61, 53, 0.15);
+      box-shadow: 0 20px 40px rgba(18, 61, 53, 0.08);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .mockup-header {
+      background-color: var(--conexa-charcoal);
+      color: var(--conexa-white);
+      padding: 12px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .window-dots {
+      display: flex;
+      gap: 6px;
+    }
+
+    .dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+    }
+    .dot-red { background: #ef4444; }
+    .dot-yellow { background: #f59e0b; }
+    .dot-green { background: #10b981; }
+
+    .mockup-body {
+      padding: 24px;
+      background-color: #FAF9F6;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .metrics-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .metric-card {
+      background: var(--conexa-white);
+      padding: 14px;
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(18, 61, 53, 0.1);
+    }
+
+    .metric-top {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.75rem;
+      color: var(--conexa-muted);
+      margin-bottom: 4px;
+    }
+
+    .metric-badge {
+      font-size: 0.6875rem;
+      font-weight: 700;
+      color: #047857;
+      background: #ecfdf5;
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+
+    .metric-val {
+      font-size: 1.625rem;
+      font-weight: 800;
+      color: var(--conexa-charcoal);
+      font-family: var(--font-display);
+    }
+
+    .metric-sub {
+      font-size: 0.6875rem;
+      color: var(--conexa-muted);
+    }
+
+    .checklist-box {
+      background: var(--conexa-white);
+      padding: 16px;
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(18, 61, 53, 0.1);
+    }
+
+    .checklist-title {
+      font-size: 0.6875rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--conexa-muted);
+      margin-bottom: 12px;
+    }
+
+    .checklist-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .check-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.8125rem;
+      font-weight: 700;
+      color: var(--conexa-charcoal);
+    }
+
+    .pipeline-preview {
+      background: var(--conexa-white);
+      padding: 16px;
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(18, 61, 53, 0.1);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .pipeline-step {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 12px;
+      border-radius: var(--radius-sm);
+      background: var(--conexa-offwhite);
+      border-left: 3px solid var(--conexa-deep);
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+
+    /* ==========================================================================
+       4. SEÇÃO 03 — FRASE DE IMPACTO
+       ========================================================================== */
+    .impact-section {
+      background-color: var(--conexa-deep);
+      color: var(--conexa-offwhite);
+      padding: 110px 0;
+      text-align: center;
+      position: relative;
+    }
+
+    .impact-text {
+      font-size: 3.25rem;
+      font-weight: 800;
+      line-height: 1.25;
+      max-width: 920px;
+      margin: 0 auto;
+      letter-spacing: -0.02em;
+    }
+
+    .impact-highlight {
+      color: var(--conexa-gold);
+      font-style: italic;
+    }
+
+    @media (max-width: 768px) {
+      .impact-text {
+        font-size: 2rem;
+      }
+      .impact-section {
+        padding: 70px 0;
+      }
+    }
+
+    .impact-divider {
+      width: 60px;
+      height: 2px;
+      background-color: rgba(181, 162, 118, 0.5);
+      margin: 40px auto;
+    }
+
+    .impact-tags {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 16px;
+      font-size: 0.8125rem;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: rgba(246, 245, 240, 0.7);
+    }
+
+    /* ==========================================================================
+       5. SEÇÃO 04 — O PROBLEMA (AUTOAVALIAÇÃO INTERATIVA)
+       ========================================================================== */
+    .cards-grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 48px;
+    }
+
+    @media (max-width: 992px) {
+      .cards-grid-3 {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .cards-grid-3 {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .problem-card {
+      background-color: var(--conexa-white);
+      border: 1px solid rgba(18, 61, 53, 0.15);
+      border-radius: var(--radius-md);
+      padding: 28px;
+      cursor: pointer;
+      transition: all var(--transition-normal);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      user-select: none;
+    }
+
+    .problem-card:hover {
+      border-color: var(--conexa-deep);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.04);
+    }
+
+    .problem-card.selected {
+      background-color: var(--conexa-deep);
+      color: var(--conexa-white);
+      border-color: var(--conexa-deep);
+      box-shadow: 0 10px 24px rgba(18, 61, 53, 0.2);
+    }
+
+    .problem-card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .problem-num {
+      font-family: monospace;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: var(--conexa-muted);
+    }
+
+    .problem-card.selected .problem-num {
+      color: var(--conexa-gold);
+    }
+
+    .problem-check-box {
+      width: 24px;
+      height: 24px;
+      border-radius: 6px;
+      border: 1px solid rgba(18, 61, 53, 0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all var(--transition-fast);
+    }
+
+    .problem-card.selected .problem-check-box {
+      background-color: var(--conexa-gold);
+      border-color: var(--conexa-gold);
+      color: var(--conexa-charcoal);
+    }
+
+    .problem-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      line-height: 1.25;
+    }
+
+    .problem-desc {
+      font-size: 0.875rem;
+      color: var(--conexa-muted);
+      line-height: 1.6;
+    }
+
+    .problem-card.selected .problem-desc {
+      color: rgba(246, 245, 240, 0.85);
+    }
+
+    .problem-footer {
+      padding-top: 18px;
+      margin-top: 18px;
+      border-top: 1px solid rgba(0,0,0,0.06);
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+
+    .problem-card.selected .problem-footer {
+      border-top-color: rgba(255,255,255,0.1);
+    }
+
+    .problem-tag {
+      color: var(--conexa-deep);
+    }
+
+    .problem-card.selected .problem-tag {
+      color: var(--conexa-gold);
+    }
+
+    .problem-cta-banner {
+      margin-top: 48px;
+      background-color: var(--conexa-white);
+      border: 1px solid rgba(18, 61, 53, 0.15);
+      border-radius: var(--radius-lg);
+      padding: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.03);
+    }
+
+    @media (max-width: 768px) {
+      .problem-cta-banner {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 24px;
+      }
+      .problem-cta-banner .btn {
+        width: 100%;
+      }
+    }
+
+    /* ==========================================================================
+       6. SEÇÃO 05 — APRESENTAÇÃO DA CONEXA
+       ========================================================================== */
+    .bg-deep {
+      background-color: var(--conexa-deep);
+      color: var(--conexa-offwhite);
+    }
+
+    .diagram-box {
+      background-color: rgba(16, 33, 30, 0.85);
+      border: 1px solid rgba(181, 162, 118, 0.3);
+      border-radius: var(--radius-lg);
+      padding: 48px;
+      margin-top: 48px;
+    }
+
+    @media (max-width: 768px) {
+      .diagram-box {
+        padding: 24px;
+      }
+    }
+
+    .diagram-hub-center {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      margin: 10px 0 48px;
+      position: relative;
+    }
+
+    .positioning-large-logo {
+      height: 240px;
+      max-height: 280px;
+      width: auto;
+      max-width: 92%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+      border-radius: 16px;
+      filter: drop-shadow(0 12px 30px rgba(0,0,0,0.45));
+      transition: transform var(--transition-normal), filter var(--transition-normal);
+      transform: scale(1.05);
+    }
+
+    .positioning-large-logo:hover {
+      transform: scale(1.08);
+      filter: drop-shadow(0 16px 36px rgba(0,0,0,0.55));
+    }
+
+    @media (max-width: 768px) {
+      .diagram-hub-center {
+        margin: 5px 0 36px;
+      }
+      .positioning-large-logo {
+        height: 160px;
+        max-height: 180px;
+        transform: scale(1.02);
+      }
+    }
+
+    .hub-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 16px;
+    }
+
+    @media (max-width: 992px) {
+      .hub-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .hub-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .hub-card {
+      background: rgba(18, 61, 53, 0.9);
+      border: 1px solid rgba(181, 162, 118, 0.25);
+      padding: 20px;
+      border-radius: var(--radius-md);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all var(--transition-normal);
+    }
+
+    .hub-card:hover {
+      border-color: var(--conexa-gold);
+      background: var(--conexa-forest);
+      transform: translateY(-3px);
+    }
+
+    /* ==========================================================================
+       7. SEÇÃO 06 — MÉTODO CONEXA
+       ========================================================================== */
+    .timeline-desktop {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 16px;
+      position: relative;
+      margin-top: 48px;
+    }
+
+    .timeline-desktop::before {
+      content: '';
+      position: absolute;
+      top: 36px;
+      left: 40px;
+      right: 40px;
+      height: 2px;
+      background-color: rgba(18, 61, 53, 0.15);
+      z-index: 1;
+    }
+
+    .timeline-step {
+      background-color: var(--conexa-offwhite);
+      border: 1px solid rgba(18, 61, 53, 0.15);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all var(--transition-normal);
+    }
+
+    .timeline-step:hover {
+      background-color: var(--conexa-white);
+      border-color: var(--conexa-deep);
+      box-shadow: 0 10px 24px rgba(0,0,0,0.06);
+      transform: translateY(-4px);
+    }
+
+    .step-circle {
+      width: 48px;
+      height: 48px;
+      background: var(--conexa-white);
+      border: 1px solid rgba(18, 61, 53, 0.2);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      color: var(--conexa-deep);
+      margin-bottom: 20px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+    }
+
+    @media (max-width: 992px) {
+      .timeline-desktop {
+        display: none;
+      }
+      .timeline-mobile {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        position: relative;
+        padding-left: 28px;
+        border-left: 2px solid rgba(18, 61, 53, 0.2);
+        margin-left: 12px;
+        margin-top: 36px;
+      }
+      .timeline-mobile-step {
+        background: var(--conexa-white);
+        border: 1px solid rgba(18, 61, 53, 0.15);
+        border-radius: var(--radius-md);
+        padding: 20px;
+        position: relative;
+      }
+      .timeline-mobile-node {
+        position: absolute;
+        left: -40px;
+        top: 16px;
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        background: var(--conexa-deep);
+        color: white;
+        border: 2px solid white;
+        font-size: 0.6875rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+      }
+    }
+
+    @media (min-width: 993px) {
+      .timeline-mobile {
+        display: none;
+      }
+    }
+
+    /* ==========================================================================
+       8. SEÇÃO 07 — O QUE A CONEXA ENTREGA
+       ========================================================================== */
+    .bg-surface {
+      background-color: var(--conexa-surface-light);
+    }
+
+    .deliverable-card {
+      background-color: var(--conexa-white);
+      border: 1px solid rgba(18, 61, 53, 0.1);
+      border-radius: var(--radius-md);
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all var(--transition-normal);
+    }
+
+    .deliverable-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 28px rgba(0,0,0,0.06);
+      border-color: rgba(18, 61, 53, 0.3);
+    }
+
+    /* ==========================================================================
+       9. SEÇÃO 08 — ESTRATÉGIA ANTES DA FERRAMENTA
+       ========================================================================== */
+    .flow-steps-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-top: 40px;
+    }
+
+    @media (max-width: 992px) {
+      .flow-steps-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .flow-step-box {
+      background: rgba(18, 61, 53, 0.8);
+      border: 1px solid rgba(181, 162, 118, 0.25);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      transition: all var(--transition-normal);
+    }
+
+    .flow-step-box:hover {
+      border-color: var(--conexa-gold);
+    }
+
+    /* ==========================================================================
+       10. SEÇÃO 09 — PARA QUEM
+       ========================================================================== */
+    .segments-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 16px;
+      margin-top: 48px;
+    }
+
+    @media (max-width: 1024px) {
+      .segments-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .segments-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .segment-card {
+      background: var(--conexa-white);
+      border: 1px solid rgba(18, 61, 53, 0.15);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      transition: all var(--transition-normal);
+    }
+
+    .segment-card:hover {
+      border-color: var(--conexa-deep);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.03);
+    }
+
+    .quote-box {
+      background: var(--conexa-white);
+      border: 1px solid rgba(18, 61, 53, 0.15);
+      border-radius: var(--radius-lg);
+      padding: 40px;
+      text-align: center;
+      max-width: 860px;
+      margin: 48px auto 0;
+    }
+
+    /* ==========================================================================
+       11. SEÇÃO 10 — DIFERENCIAL DA CONEXA
+       ========================================================================== */
+    .diff-grid {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 32px;
+      margin-top: 48px;
+    }
+
+    @media (max-width: 900px) {
+      .diff-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .diff-card-trad {
+      background: rgba(255, 255, 255, 0.8);
+      border: 1px solid rgba(0,0,0,0.1);
+      border-radius: var(--radius-lg);
+      padding: 36px;
+    }
+
+    .diff-card-conexa {
+      background: var(--conexa-deep);
+      color: var(--conexa-white);
+      border: 2px solid rgba(181, 162, 118, 0.5);
+      border-radius: var(--radius-lg);
+      padding: 36px;
+      box-shadow: 0 20px 40px rgba(18, 61, 53, 0.2);
+    }
+
+    .diff-flow-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin: 24px 0;
+    }
+
+    .diff-step-item {
+      padding: 12px 16px;
+      border-radius: var(--radius-sm);
+      font-size: 0.875rem;
+    }
+
+    .diff-step-trad {
+      background: #F3F3EE;
+      border: 1px solid #E2E1DA;
+    }
+
+    .diff-step-conexa {
+      background: rgba(16, 33, 30, 0.7);
+      border: 1px solid rgba(181, 162, 118, 0.3);
+    }
+
+    /* ==========================================================================
+       12. SEÇÃO 11 — IMPLEMENTAÇÃO PRESENCIAL
+       ========================================================================== */
+    .in-company-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 56px;
+      align-items: center;
+    }
+
+    @media (max-width: 900px) {
+      .in-company-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .in-company-img-wrap {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 1px solid rgba(18, 61, 53, 0.2);
+      box-shadow: 0 16px 36px rgba(0,0,0,0.1);
+      position: relative;
+    }
+
+    .in-company-badge {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: var(--conexa-deep);
+      color: var(--conexa-white);
+      border: 1px solid rgba(181, 162, 118, 0.5);
+      padding: 6px 14px;
+      border-radius: var(--radius-sm);
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    /* ==========================================================================
+       13. SEÇÃO 12 — TRANSFORMAÇÃO
+       ========================================================================== */
+    .trans-grid {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 24px;
+      align-items: center;
+      margin-top: 48px;
+    }
+
+    @media (max-width: 900px) {
+      .trans-grid {
+        grid-template-columns: 1fr;
+      }
+      .trans-arrow {
+        transform: rotate(90deg);
+        margin: 10px auto;
+      }
+    }
+
+    .trans-card {
+      padding: 32px;
+      border-radius: var(--radius-lg);
+    }
+
+    .trans-card-before {
+      background: rgba(16, 33, 30, 0.9);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .trans-card-after {
+      background: rgba(29, 81, 70, 0.8);
+      border: 2px solid var(--conexa-gold);
+    }
+
+    /* ==========================================================================
+       14. SEÇÃO 13 — CASES DE ESTUDO
+       ========================================================================== */
+    .case-structure-box {
+      background: var(--conexa-white);
+      border: 1px solid rgba(18, 61, 53, 0.15);
+      border-radius: var(--radius-lg);
+      padding: 36px;
+      margin-top: 48px;
+    }
+
+    .case-pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 16px;
+      margin: 24px 0;
+    }
+
+    @media (max-width: 992px) {
+      .case-pillars-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ==========================================================================
+       15. SEÇÃO 14 — CTA FINAL
+       ========================================================================== */
+    .final-cta-section {
+      background-color: var(--conexa-deep);
+      color: var(--conexa-white);
+      padding: 120px 0;
+      text-align: center;
+      position: relative;
+    }
+
+    .final-cta-title {
+      font-size: 3.5rem;
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 24px;
+    }
+
+    @media (max-width: 768px) {
+      .final-cta-title {
+        font-size: 2.25rem;
+      }
+      .final-cta-section {
+        padding: 80px 0;
+      }
+    }
+
+    /* ==========================================================================
+       16. FOOTER & BARRA MOBILE
+       ========================================================================== */
+    .footer {
+      background-color: var(--conexa-charcoal);
+      color: var(--conexa-white);
+      padding: 64px 0 96px;
+      border-top: 1px solid rgba(18, 61, 53, 0.4);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 48px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    @media (max-width: 768px) {
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 36px;
+      }
+    }
+
+    .mobile-bottom-bar {
+      display: none;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 999;
+      background-color: rgba(16, 33, 30, 0.95);
+      backdrop-filter: blur(8px);
+      border-top: 1px solid rgba(181, 162, 118, 0.3);
+      padding: 12px 16px;
+    }
+
+    @media (max-width: 768px) {
+      .mobile-bottom-bar {
+        display: block;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==========================================================================
+       SEÇÃO 01 — NAVBAR FIXA
+       ========================================================================== -->
+  <header class="navbar" id="mainNavbar">
+    <div class="container nav-container">
+      <!-- Marca & Logo Oficial -->
+      <a href="#" class="brand-lockup" aria-label="CONEXA Início">
+        <img 
+          src="https://i.ibb.co/xKstq77M/IMG-6950-removebg-preview-1.png" 
+          alt="CONEXA Gestão Estratégica" 
+          class="brand-logo"
+          referrerpolicy="no-referrer"
+        >
+      </a>
+
+      <!-- Menu Desktop -->
+      <ul class="nav-links">
+        <li><a href="#solucoes" class="nav-link">Soluções</a></li>
+        <li><a href="#metodo" class="nav-link">Método</a></li>
+        <li><a href="#para-empresas" class="nav-link">Para empresas</a></li>
+        <li><a href="#sobre" class="nav-link">Sobre</a></li>
+      </ul>
+
+      <!-- Ações Desktop -->
+      <div class="nav-actions">
+        <a href="https://wa.me/message/57GKRVDS734WK1" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="padding: 10px 20px; font-size: 0.875rem;">
+          <span>Falar com a Conexa</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--conexa-gold);"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+        </a>
+
+        <!-- Botão Hambúrguer Mobile -->
+        <button type="button" class="hamburger-btn" id="hamburgerToggle" aria-label="Abrir menu">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Gaveta Mobile -->
+  <div class="mobile-drawer" id="mobileDrawer">
+    <div style="display: flex; align-items: center; justify-content: center; padding-bottom: 20px; border-bottom: 1px solid rgba(18, 61, 53, 0.1);">
+      <img src="https://i.ibb.co/xKstq77M/IMG-6950-removebg-preview-1.png" alt="CONEXA Gestão Estratégica" style="height: 90px; width: auto; object-fit: contain; transform: scale(1.15);" referrerpolicy="no-referrer">
+    </div>
+    <a href="#solucoes" class="mobile-link" style="padding: 8px 0; font-weight: 600; border-bottom: 1px solid rgba(0,0,0,0.05); display: flex; justify-content: space-between;">Soluções <span>→</span></a>
+    <a href="#metodo" class="mobile-link" style="padding: 8px 0; font-weight: 600; border-bottom: 1px solid rgba(0,0,0,0.05); display: flex; justify-content: space-between;">Método <span>→</span></a>
+    <a href="#para-empresas" class="mobile-link" style="padding: 8px 0; font-weight: 600; border-bottom: 1px solid rgba(0,0,0,0.05); display: flex; justify-content: space-between;">Para empresas <span>→</span></a>
+    <a href="#sobre" class="mobile-link" style="padding: 8px 0; font-weight: 600; border-bottom: 1px solid rgba(0,0,0,0.05); display: flex; justify-content: space-between;">Sobre <span>→</span></a>
+    <a href="https://wa.me/message/57GKRVDS734WK1" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="width: 100%; margin-top: 8px;">
+      Quero estruturar minha operação
+    </a>
+  </div>
+
+  <main>
+    <!-- ==========================================================================
+         SEÇÃO 02 — HERO
+         ========================================================================== -->
+    <section class="hero-section">
+      <div class="container hero-grid">
+        <!-- Texto Esquerdo -->
+        <div>
+          <div class="kicker" style="color: var(--conexa-deep);">Gestão Estratégica</div>
+          
+          <h1 class="hero-title">
+            Sua empresa vende.<br>
+            Mas sua operação está<br>
+            <span class="hero-highlight">preparada para crescer?</span>
+          </h1>
+
+          <p class="hero-desc">
+            A Conexa organiza processos, estrutura sua operação comercial e implementa tecnologia para sua empresa funcionar melhor.
+          </p>
+
+          <div class="hero-cta-group">
+            <a href="https://wa.me/message/57GKRVDS734WK1" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+              <span>Quero estruturar minha operação</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--conexa-gold);"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+            </a>
+
+            <a href="#problema" class="btn btn-outline">
+              <span>Conhecer a Conexa ↓</span>
+            </a>
+          </div>
+
+          <div class="hero-pillars-row">
+            <div>
+              <div class="pillar-item-title">Diagnóstico Real</div>
+              <div class="pillar-item-sub">Entramos na operação</div>
+            </div>
+            <div>
+              <div class="pillar-item-title">Estruturação</div>
+              <div class="pillar-item-sub">CRM, fluxos & rotinas</div>
+            </div>
+            <div>
+              <div class="pillar-item-title">Treinamento</div>
+              <div class="pillar-item-sub">Capacitação presencial</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Visual Direito: Mockup Conceitual da Operação -->
+        <div>
+          <div class="dashboard-mockup">
+            <div class="mockup-header">
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <div class="window-dots">
+                  <span class="dot dot-red"></span>
+                  <span class="dot dot-yellow"></span>
+                  <span class="dot dot-green"></span>
+                </div>
+                <span style="font-family: monospace; font-size: 0.75rem; letter-spacing: 0.05em; color: rgba(255,255,255,0.7); margin-left: 6px;">
+                  PAINEL OPERACIONAL CONEXA
+                </span>
+              </div>
+              <div style="font-size: 0.6875rem; color: var(--conexa-gold); font-weight: 600;">
+                ● Fluxo Ativo
+              </div>
+            </div>
+
+            <div class="mockup-body">
+              <div class="metrics-row">
+                <div class="metric-card">
+                  <div class="metric-top">
+                    <span>Oportunidades</span>
+                    <span class="metric-badge">+18,4%</span>
+                  </div>
+                  <div class="metric-val">128</div>
+                  <div class="metric-sub">em fluxo padronizado</div>
+                </div>
+
+                <div class="metric-card">
+                  <div class="metric-top">
+                    <span>Em Negociação</span>
+                    <span class="metric-badge">+9,2%</span>
+                  </div>
+                  <div class="metric-val">42</div>
+                  <div class="metric-sub">com follow-up ativo</div>
+                </div>
+              </div>
+
+              <div class="checklist-box">
+                <div class="checklist-title">Pilares da Operação Estruturada</div>
+                <div class="checklist-grid">
+                  <div class="check-item"><span style="color: var(--conexa-deep);">✓</span> CRM Organizado</div>
+                  <div class="check-item"><span style="color: var(--conexa-deep);">✓</span> Processos Claros</div>
+                  <div class="check-item"><span style="color: var(--conexa-deep);">✓</span> Automação Ativa</div>
+                  <div class="check-item"><span style="color: var(--conexa-deep);">✓</span> IA Aplicada</div>
+                </div>
+              </div>
+
+              <div class="pipeline-preview">
+                <div style="display: flex; justify-content: space-between; font-size: 0.75rem; font-weight: 700;">
+                  <span>Rotina & Acompanhamento</span>
+                  <span style="color: var(--conexa-muted); font-size: 0.6875rem;">Status em tempo real</span>
+                </div>
+                <div class="pipeline-step">
+                  <span>1. Triagem & Qualificação Imediata</span>
+                  <span style="color: #047857;">Sem perdas</span>
+                </div>
+                <div class="pipeline-step">
+                  <span>2. Rotina de Follow-up Agendada</span>
+                  <span style="color: #047857;">Em dia</span>
+                </div>
+                <div class="pipeline-step">
+                  <span>3. Fechamento & Entrega Técnica</span>
+                  <span style="color: #047857;">Registrado</span>
+                </div>
+                <div style="font-size: 0.65rem; color: var(--conexa-muted); font-style: italic; margin-top: 4px;">
+                  * Interface conceitual demonstrativa da governança comercial Conexa.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SEÇÃO 03 — FRASE DE IMPACTO
+         ========================================================================== -->
+    <section class="impact-section">
+      <div class="container">
+        <p class="impact-text">
+          O problema nem sempre é <span class="impact-highlight">vender</span>.<br>
+          É organizar tudo o que acontece depois.
+        </p>
+        
+        <div class="impact-divider"></div>
+
+        <div class="impact-tags">
+          <span>PROCESSOS</span> · 
+          <span>PESSOAS</span> · 
+          <span>CRM</span> · 
+          <span>FOLLOW-UP</span> · 
+          <span>OPERAÇÃO</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SEÇÃO 04 — O PROBLEMA (PONTO DE PARTIDA + AUTOAVALIAÇÃO)
+         ========================================================================== -->
+    <section id="problema" class="section-py">
+      <div class="container">
+        <div style="max-w: 680px;">
+          <div class="kicker" style="color: var(--conexa-deep);">O Ponto de Partida</div>
+          <h2 style="font-size: 2.75rem; margin-bottom: 16px;">
+            Sua operação ainda depende demais das pessoas?
+          </h2>
+          <p style="font-size: 1.125rem; color: var(--conexa-muted);">
+            Quando processos não estão estruturados, o crescimento pode trazer mais complexidade, retrabalho e perda de oportunidades.
+          </p>
+          <p style="font-size: 0.875rem; font-weight: 600; color: var(--conexa-deep); margin-top: 12px;">
+            💡 Clique nos pontos abaixo que acontecem no seu dia a dia para autoavaliar sua operação:
+          </p>
+        </div>
+
+        <!-- 6 Cards de Problemas -->
+        <div class="cards-grid-3" id="problemCardsContainer">
+          <div class="problem-card" data-title="Leads sem acompanhamento" onclick="toggleProblemCard(this)">
+            <div>
+              <div class="problem-card-top">
+                <span class="problem-num">CARD 01</span>
+                <div class="problem-check-box">✓</div>
+              </div>
+              <h3 class="problem-title">Leads sem acompanhamento</h3>
+              <p class="problem-desc">"Clientes e oportunidades ficam sem retorno ou dependem da memória de alguém."</p>
+            </div>
+            <div class="problem-footer">
+              <span class="problem-tag">Perda imediata</span>
+              <span class="check-status-text">Clique para marcar</span>
+            </div>
+          </div>
+
+          <div class="problem-card" data-title="Follow-up esquecido" onclick="toggleProblemCard(this)">
+            <div>
+              <div class="problem-card-top">
+                <span class="problem-num">CARD 02</span>
+                <div class="problem-check-box">✓</div>
+              </div>
+              <h3 class="problem-title">Follow-up esquecido</h3>
+              <p class="problem-desc">"Negociações esfriam porque não existe uma rotina clara de acompanhamento."</p>
+            </div>
+            <div class="problem-footer">
+              <span class="problem-tag">Negociações frias</span>
+              <span class="check-status-text">Clique para marcar</span>
+            </div>
+          </div>
+
+          <div class="problem-card" data-title="Processos diferentes" onclick="toggleProblemCard(this)">
+            <div>
+              <div class="problem-card-top">
+                <span class="problem-num">CARD 03</span>
+                <div class="problem-check-box">✓</div>
+              </div>
+              <h3 class="problem-title">Processos diferentes</h3>
+              <p class="problem-desc">"Cada pessoa executa a mesma atividade de um jeito, dificultando o controle."</p>
+            </div>
+            <div class="problem-footer">
+              <span class="problem-tag">Falta de padrão</span>
+              <span class="check-status-text">Clique para marcar</span>
+            </div>
+          </div>
+
+          <div class="problem-card" data-title="Informação espalhada" onclick="toggleProblemCard(this)">
+            <div>
+              <div class="problem-card-top">
+                <span class="problem-num">CARD 04</span>
+                <div class="problem-check-box">✓</div>
+              </div>
+              <h3 class="problem-title">Informação espalhada</h3>
+              <p class="problem-desc">"Dados ficam divididos entre WhatsApp, planilhas, anotações e diferentes ferramentas."</p>
+            </div>
+            <div class="problem-footer">
+              <span class="problem-tag">Visibilidade zero</span>
+              <span class="check-status-text">Clique para marcar</span>
+            </div>
+          </div>
+
+          <div class="problem-card" data-title="Equipe dependente" onclick="toggleProblemCard(this)">
+            <div>
+              <div class="problem-card-top">
+                <span class="problem-num">CARD 05</span>
+                <div class="problem-check-box">✓</div>
+              </div>
+              <h3 class="problem-title">Equipe dependente</h3>
+              <p class="problem-desc">"O negócio depende de pessoas específicas para que determinadas tarefas aconteçam."</p>
+            </div>
+            <div class="problem-footer">
+              <span class="problem-tag">Gargalo no gestor</span>
+              <span class="check-status-text">Clique para marcar</span>
+            </div>
+          </div>
+
+          <div class="problem-card" data-title="Tecnologia desconectada" onclick="toggleProblemCard(this)">
+            <div>
+              <div class="problem-card-top">
+                <span class="problem-num">CARD 06</span>
+                <div class="problem-check-box">✓</div>
+              </div>
+              <h3 class="problem-title">Tecnologia desconectada</h3>
+              <p class="problem-desc">"Existem ferramentas, mas elas não estão integradas a um processo que faça sentido."</p>
+            </div>
+            <div class="problem-footer">
+              <span class="problem-tag">Custo sem retorno</span>
+              <span class="check-status-text">Clique para marcar</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Banner de Conclusão & CTA Dinâmico -->
+        <div class="problem-cta-banner">
+          <div>
+            <div style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: var(--conexa-deep); letter-spacing: 0.1em; margin-bottom: 6px;">
+              Diagnóstico Inicial
+            </div>
+            <p style="font-size: 1.35rem; font-weight: 700; line-height: 1.3; color: var(--conexa-charcoal); margin-bottom: 8px;">
+              Se você se identificou com dois ou mais desses pontos, provavelmente existe espaço para organizar sua operação.
+            </p>
+            <p style="font-size: 0.875rem; color: var(--conexa-muted);">
+              A complexidade não precisa travar o crescimento. Estruturar fluxos protege a sua margem e a rotina do seu time.
+            </p>
+          </div>
+
+          <a href="https://wa.me/message/57GKRVDS734WK1" id="problemCtaBtn" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="flex-shrink: 0;">
+            <span>Quero entender minha operação</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--conexa-gold);"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SEÇÃO 05 — APRESENTAÇÃO DA CONEXA
+         ========================================================================== -->
+    <section id="sobre" class="section-py bg-deep">
+      <div class="container">
+        <div>
+          <div class="kicker" style="color: var(--conexa-gold);">O Posicionamento</div>
+          <h2 style="font-size: 2.75rem; margin-bottom: 8px;">É aqui que a Conexa entra.</h2>
+          <h3 style="font-size: 1.5rem; color: var(--conexa-gold); margin-bottom: 16px;">
+            Não entregamos apenas um diagnóstico.<br>
+            Entramos na operação.
+          </h3>
+          <p style="font-size: 1.125rem; color: rgba(246, 245, 240, 0.85); max-width: 780px;">
+            A Conexa entende como o negócio funciona hoje, identifica gargalos e ajuda a construir uma estrutura mais organizada para processos, equipe e tecnologia trabalharem juntos.
+          </p>
+        </div>
+
+        <div class="diagram-box">
+          <!-- Núcleo Operacional: Logo oficial grande centralizada e bem estruturada -->
+          <div class="diagram-hub-center">
+            <img 
+              src="https://i.ibb.co/1tkccxHr/IMG-6950.png" 
+              alt="CONEXA Gestão Estratégica" 
+              class="positioning-large-logo" 
+              referrerpolicy="no-referrer"
+            >
+          </div>
+
+          <div class="hub-grid">
+            <div class="hub-card">
+              <div>
+                <span style="font-family: monospace; font-size: 0.75rem; color: var(--conexa-gold);">01</span>
+                <h4 style="font-size: 0.9375rem; margin: 8px 0 4px; text-transform: uppercase;">PROCESSOS</h4>
+                <p style="font-size: 0.75rem; color: rgba(246, 245, 240, 0.7);">Mapeamento, rotinas e padrões claros para o dia a dia.</p>
+              </div>
+            </div>
+
+            <div class="hub-card">
+              <div>
+                <span style="font-family: monospace; font-size: 0.75rem; color: var(--conexa-gold);">02</span>
+                <h4 style="font-size: 0.9375rem; margin: 8px 0 4px; text-transform: uppercase;">CRM</h4>
+                <p style="font-size: 0.75rem; color: rgba(246, 245, 240, 0.7);">Gestão visual e ágil de todas as oportunidades.</p>
+              </div>
+            </div>
+
+            <div class="hub-card">
+              <div>
+                <span style="font-family: monospace; font-size: 0.75rem; color: var(--conexa-gold);">03</span>
+                <h4 style="font-size: 0.9375rem; margin: 8px 0 4px; text-transform: uppercase;">IA APLICADA</h4>
+                <p style="font-size: 0.75rem; color: rgba(246, 245, 240, 0.7);">Produtividade real e automações que eliminam retrabalho.</p>
+              </div>
+            </div>
+
+            <div class="hub-card">
+              <div>
+                <span style="font-family: monospace; font-size: 0.75rem; color: var(--conexa-gold);">04</span>
+                <h4 style="font-size: 0.9375rem; margin: 8px 0 4px; text-transform: uppercase;">EQUIPE</h4>
+                <p style="font-size: 0.75rem; color: rgba(246, 245, 240, 0.7);">Capacitação prática e orientação presencial.</p>
+              </div>
+            </div>
+
+            <div class="hub-card">
+              <div>
+                <span style="font-family: monospace; font-size: 0.75rem; color: var(--conexa-gold);">05</span>
+                <h4 style="font-size: 0.9375rem; margin: 8px 0 4px; text-transform: uppercase;">OPERAÇÃO</h4>
+                <p style="font-size: 0.75rem; color: rgba(246, 245, 240, 0.7);">Estrutura pronta para sustentar crescimento contínuo.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SEÇÃO 06 — MÉTODO CONEXA
+         ========================================================================== -->
+    <section id="metodo" class="section-py">
+      <div class="container">
+        <div>
+          <div class="kicker" style="color: var(--conexa-deep);">Método Conexa</div>
+          <h2 style="font-size: 2.75rem; margin-bottom: 12px;">Do diagnóstico à implementação.</h2>
+          <p style="font-size: 1.125rem; color: var(--conexa-muted); max-width: 680px;">
+            Não entregamos apenas uma recomendação. Ajudamos sua empresa a colocar a estrutura para funcionar.
+          </p>
+        </div>
+
+        <!-- Linha Desktop -->
+        <div class="timeline-desktop">
+          <div class="timeline-step">
+            <div>
+              <div class="step-circle">01</div>
+              <h3 style="font-size: 1.1rem; text-transform: uppercase; margin-bottom: 6px;">DIAGNÓSTICO</h3>
+              <p style="font-size: 0.8125rem; color: var(--conexa-muted);">"Entendemos a operação atual e identificamos gargalos."</p>
+            </div>
+            <div style="font-size: 0.6875rem; font-weight: 700; color: var(--conexa-deep); margin-top: 16px; padding-top: 12px; border-top: 1px solid rgba(0,0,0,0.06);">
+              Mapeamento de campo
+            </div>
+          </div>
+
+          <div class="timeline-step">
+            <div>
+              <div class="step-circle">02</div>
+              <h3 style="font-size: 1.1rem; text-transform: uppercase; margin-bottom: 6px;">PROCESSOS</h3>
+              <p style="font-size: 0.8125rem; color: var(--conexa-muted);">"Organizamos etapas, responsabilidades e rotinas."</p>
+            </div>
+            <div style="font-size: 0.6875rem; font-weight: 700; color: var(--conexa-deep); margin-top: 16px; padding-top: 12px; border-top: 1px solid rgba(0,0,0,0.06);">
+              Padronização de rotinas
+            </div>
+          </div>
+
+          <div class="timeline-step">
+            <div>
+              <div class="step-circle">03</div>
+              <h3 style="font-size: 1.1rem; text-transform: uppercase; margin-bottom: 6px;">CRM</h3>
+              <p style="font-size: 0.8125rem; color: var(--conexa-muted);">"Implementamos uma estrutura simples e adequada ao negócio."</p>
+            </div>
+            <div style="font-size: 0.6875rem; font-weight: 700; color: var(--conexa-deep); margin-top: 16px; padding-top: 12px; border-top: 1px solid rgba(0,0,0,0.06);">
+              Funil comercial claro
+            </div>
+          </div>
+
+          <div class="timeline-step">
+            <div>
+              <div class="step-circle">04</div>
+              <h3 style="font-size: 1.1rem; text-transform: uppercase; margin-bottom: 6px;">IMPLEMENTAÇÃO</h3>
+              <p style="font-size: 0.8125rem; color: var(--conexa-muted);">"Colocamos a estratégia em funcionamento."</p>
+            </div>
+            <div style="font-size: 0.6875rem; font-weight: 700; color: var(--conexa-deep); margin-top: 16px; padding-top: 12px; border-top: 1px solid rgba(0,0,0,0.06);">
+              Ativação na prática
+            </div>
+          </div>
+
+          <div class="timeline-step">
+            <div>
+              <div class="step-circle">05</div>
+              <h3 style="font-size: 1.1rem; text-transform: uppercase; margin-bottom: 6px;">TREINAMENTO</h3>
+              <p style="font-size: 0.8125rem; color: var(--conexa-muted);">"Capacitamos a equipe para utilizar a nova estrutura."</p>
+            </div>
+            <div style="font-size: 0.6875rem; font-weight: 700; color: var(--conexa-deep); margin-top: 16px; padding-top: 12px; border-top: 1px solid rgba(0,0,0,0.06);">
+              Autonomia sustentável
+            </div>
+          </div>
+        </div>
+
+        <!-- Linha do Tempo Mobile -->
+        <div class="timeline-mobile">
+          <div class="timeline-mobile-step">
+            <div class="timeline-mobile-node">01</div>
+            <h3 style="font-size: 1rem; text-transform: uppercase; margin-bottom: 4px;">DIAGNÓSTICO</h3>
+            <p style="font-size: 0.8125rem; color: var(--conexa-muted);">"Entendemos a operação atual e identificamos gargalos."</p>
+          </div>
+          <div class="timeline-mobile-step">
+            <div class="timeline-mobile-node">02</div>
+            <h3 style="font-size: 1rem; text-transform: uppercase; margin-bottom: 4px;">PROCESSOS</h3>
+            <p style="font-size: 0.8125rem; color: var(--conexa-muted);">"Organizamos etapas, responsabilidades e rotinas."</p>
+          </div>
+          <div class="timeline-mobile-step">
+            <div class="timeline-mobile-node">03</div>
+            <h3 style="font-size: 1rem; text-transform: uppercase; margin-bottom: 4px;">CRM</h3>
+            <p style="font-size: 0.8125rem; color: var(--conexa-muted);">"Implementamos uma estrutura simples e adequada ao negócio."</p>
+          </div>
+          <div class="timeline-mobile-step">
+            <div class="timeline-mobile-node">04</div>
+            <h3 style="font-size: 1rem; text-transform: uppercase; margin-bottom: 4px;">IMPLEMENTAÇÃO</h3>
+            <p style="font-size: 0.8125rem; color: var(--conexa-muted);">"Colocamos a estratégia em funcionamento."</p>
+          </div>
+          <div class="timeline-mobile-step">
+            <div class="timeline-mobile-node">05</div>
+            <h3 style="font-size: 1rem; text-transform: uppercase; margin-bottom: 4px;">TREINAMENTO</h3>
+            <p style="font-size: 0.8125rem; color: var(--conexa-muted);">"Capacitamos a equipe para utilizar a nova estrutura."</p>
+          </div>
+        </div>
+
+        <!-- Chamada de Compromisso -->
+        <div style="margin-top: 48px; background: var(--conexa-deep); color: white; padding: 28px 36px; border-radius: var(--radius-md); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px;">
+          <div>
+            <div style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: var(--conexa-gold); letter-spacing: 0.1em;">Compromisso Prático</div>
+            <p style="font-size: 1.15rem; font-weight: 700;">O objetivo é sua equipe usar a estrutura com naturalidade e autonomia.</p>
+          </div>
+          <a href="https://wa.me/message/57GKRVDS734WK1" target="_blank" rel="noopener noreferrer" class="btn btn-gold">
+            Quero estruturar minha operação
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SEÇÃO 07 — O QUE A CONEXA ENTREGA
+         ========================================================================== -->
+    <section id="solucoes" class="section-py bg-surface">
+      <div class="container">
+        <div>
+          <div class="kicker" style="color: var(--conexa-deep);">Entregáveis</div>
+          <h2 style="font-size: 2.75rem; margin-bottom: 8px;">Uma operação estruturada de ponta a ponta.</h2>
+          <p style="font-size: 1.125rem; color: var(--conexa-muted);">
+            A tecnologia entra como parte da estratégia — nunca como fim.
+          </p>
+        </div>
+
+        <div class="cards-grid-3">
+          <div class="deliverable-card">
+            <div>
+              <span style="font-family: monospace; font-size: 0.75rem; font-weight: 700; color: var(--conexa-gold);">01</span>
+              <h3 style="font-size: 1.25rem; margin: 12px 0 8px; text-transform: uppercase;">CRM</h3>
+              <p style="font-size: 0.875rem; color: var(--conexa-muted); line-height: 1.6;">
+                "Organização da operação comercial e acompanhamento de oportunidades em um fluxo claro."
+              </p>
+            </div>
+            <div style="font-size: 0.75rem; font-weight: 600; color: var(--conexa-deep); margin-top: 24px; padding-top: 14px; border-top: 1px solid rgba(0,0,0,0.06);">
+              Sem leads perdidos no WhatsApp
+            </div>
+          </div>
+
+          <div class="deliverable-card">
+            <div>
+              <span style="font-family: monospace; font-size: 0.75rem; font-weight: 700; color: var(--conexa-gold);">02</span>
+              <h3 style="font-size: 1.25rem; margin: 12px 0 8px; text-transform: uppercase;">PROCESSOS</h3>
+              <p style="font-size: 0.875rem; color: var(--conexa-muted); line-height: 1.6;">
+                "Mapeamento e padronização das rotinas para a equipe saber o que fazer e quando fazer."
+              </p>
+            </div>
+            <div style="font-size: 0.75rem; font-weight: 600; color: var(--conexa-deep); margin-top: 24px; padding-top: 14px; border-top: 1px solid rgba(0,0,0,0.06);">
+              Rotinas documentadas e previsíveis
+            </div>
+          </div>
+
+          <div class="deliverable-card">
+            <div>
+              <span style="font-family: monospace; font-size: 0.75rem; font-weight: 700; color: var(--conexa-gold);">03</span>
+              <h3 style="font-size: 1.25rem; margin: 12px 0 8px; text-transform: uppercase;">AUTOMAÇÃO</h3>
+              <p style="font-size: 0.875rem; color: var(--conexa-muted); line-height: 1.6;">
+                "Redução de tarefas manuais e repetitivas onde a automação realmente faz sentido."
+              </p>
+            </div>
+            <div style="font-size: 0.75rem; font-weight: 600; color: var(--conexa-deep); margin-top: 24px; padding-top: 14px; border-top: 1px solid rgba(0,0,0,0.06);">
+              Eficiência sem burocracia
+            </div>
+          </div>
+
+          <div class="deliverable-card">
+            <div>
+              <span style="font-family: monospace; font-size: 0.75rem; font-weight: 700; color: var(--conexa-gold);">04</span>
+              <h3 style="font-size: 1.25rem; margin: 12px 0 8px; text-transform: uppercase;">INTELIGÊNCIA ARTIFICIAL</h3>
+              <p style="font-size: 0.875rem; color: var(--conexa-muted); line-height: 1.6;">
+                "Aplicação prática de IA para produtividade e eficiência operacional."
+              </p>
+            </div>
+            <div style="font-size: 0.75rem; font-weight: 600; color: var(--conexa-deep); margin-top: 24px; padding-top: 14px; border-top: 1px solid rgba(0,0,0,0.06);">
+              Tecnologia como aliada do time
+            </div>
+          </div>
+
+          <div class="deliverable-card">
+            <div>
+              <span style="font-family: monospace; font-size: 0.75rem; font-weight: 700; color: var(--conexa-gold);">05</span>
+              <h3 style="font-size: 1.25rem; margin: 12px 0 8px; text-transform: uppercase;">EQUIPE</h3>
+              <p style="font-size: 0.875rem; color: var(--conexa-muted); line-height: 1.6;">
+                "Treinamento e orientação para que a nova estrutura seja usada no dia a dia."
+              </p>
+            </div>
+            <div style="font-size: 0.75rem; font-weight: 600; color: var(--conexa-deep); margin-top: 24px; padding-top: 14px; border-top: 1px solid rgba(0,0,0,0.06);">
+              Engajamento e adoção real
+            </div>
+          </div>
+
+          <div class="deliverable-card">
+            <div>
+              <span style="font-family: monospace; font-size: 0.75rem; font-weight: 700; color: var(--conexa-gold);">06</span>
+              <h3 style="font-size: 1.25rem; margin: 12px 0 8px; text-transform: uppercase;">ACOMPANHAMENTO</h3>
+              <p style="font-size: 0.875rem; color: var(--conexa-muted); line-height: 1.6;">
+                "Ajustes e evolução depois da implementação, conforme a operação amadurece."
+              </p>
+            </div>
+            <div style="font-size: 0.75rem; font-weight: 600; color: var(--conexa-deep); margin-top: 24px; padding-top: 14px; border-top: 1px solid rgba(0,0,0,0.06);">
+              Ajustes finos contínuos
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SEÇÃO 08 — ESTRATÉGIA ANTES DA FERRAMENTA
+         ========================================================================== -->
+    <section class="section-py bg-deep">
+      <div class="container">
+        <div>
+          <div class="kicker" style="color: var(--conexa-gold);">Princípio Operacional</div>
+          <h2 style="font-size: 2.75rem; margin-bottom: 6px;">Você não precisa de mais uma ferramenta.</h2>
+          <h3 style="font-size: 1.75rem; color: var(--conexa-gold); margin-bottom: 16px;">Precisa saber o que fazer com ela.</h3>
+          <p style="font-size: 1.125rem; color: rgba(246, 245, 240, 0.85); max-width: 820px;">
+            É por isso que a Conexa começa pelo diagnóstico e não pela ferramenta. Primeiro entendemos o problema. Depois definimos o que realmente precisa ser implementado.
+          </p>
+        </div>
+
+        <div class="flow-steps-grid">
+          <div class="flow-step-box">
+            <span style="font-family: monospace; font-size: 0.75rem; color: var(--conexa-gold);">01</span>
+            <h4 style="font-size: 1.15rem; margin: 8px 0 4px;">PROCESSO</h4>
+            <div style="font-size: 0.75rem; color: var(--conexa-gold); margin-bottom: 8px;">Qual o fluxo ideal?</div>
+            <p style="font-size: 0.8125rem; color: rgba(246, 245, 240, 0.75);">Primeiro desenhamos o caminho claro que cada lead e cliente deve percorrer.</p>
+          </div>
+
+          <div class="flow-step-box">
+            <span style="font-family: monospace; font-size: 0.75rem; color: var(--conexa-gold);">02</span>
+            <h4 style="font-size: 1.15rem; margin: 8px 0 4px;">FERRAMENTA</h4>
+            <div style="font-size: 0.75rem; color: var(--conexa-gold); margin-bottom: 8px;">O que acelera o fluxo?</div>
+            <p style="font-size: 0.8125rem; color: rgba(246, 245, 240, 0.75);">Configuramos o CRM e automações para servir exatamente ao processo desenhado.</p>
+          </div>
+
+          <div class="flow-step-box">
+            <span style="font-family: monospace; font-size: 0.75rem; color: var(--conexa-gold);">03</span>
+            <h4 style="font-size: 1.15rem; margin: 8px 0 4px;">EQUIPE</h4>
+            <div style="font-size: 0.75rem; color: var(--conexa-gold); margin-bottom: 8px;">Quem executa com maestria?</div>
+            <p style="font-size: 0.8125rem; color: rgba(246, 245, 240, 0.75);">Treinamos as pessoas no dia a dia para que a rotina se torne hábito natural.</p>
+          </div>
+
+          <div class="flow-step-box">
+            <span style="font-family: monospace; font-size: 0.75rem; color: var(--conexa-gold);">04</span>
+            <h4 style="font-size: 1.15rem; margin: 8px 0 4px;">OPERAÇÃO</h4>
+            <div style="font-size: 0.75rem; color: var(--conexa-gold); margin-bottom: 8px;">Como sustentar o crescimento?</div>
+            <p style="font-size: 0.8125rem; color: rgba(246, 245, 240, 0.75);">Uma empresa que funciona com método, previsibilidade e sem sufoco para a diretoria.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SEÇÃO 09 — PARA QUEM
+         ========================================================================== -->
+    <section id="para-empresas" class="section-py">
+      <div class="container">
+        <div>
+          <div class="kicker" style="color: var(--conexa-deep);">Para Quem</div>
+          <h2 style="font-size: 2.75rem; margin-bottom: 8px;">A metodologia se adapta ao seu negócio.</h2>
+          <p style="font-size: 1.125rem; color: var(--conexa-muted);">
+            Se existe uma operação comercial, existem processos que podem ser organizados.
+          </p>
+        </div>
+
+        <div class="segments-grid">
+          <div class="segment-card">
+            <h4 style="font-size: 0.9375rem; text-transform: uppercase; margin-bottom: 6px;">Autoescolas</h4>
+            <p style="font-size: 0.75rem; color: var(--conexa-muted);">Gestão de matrículas, agendamento de aulas e follow-up de interessados.</p>
+          </div>
+          <div class="segment-card">
+            <h4 style="font-size: 0.9375rem; text-transform: uppercase; margin-bottom: 6px;">Clínicas & Consultórios</h4>
+            <p style="font-size: 0.75rem; color: var(--conexa-muted);">Confirmação de consultas, reativação de pacientes e gestão da recepção.</p>
+          </div>
+          <div class="segment-card">
+            <h4 style="font-size: 0.9375rem; text-transform: uppercase; margin-bottom: 6px;">Médicos</h4>
+            <p style="font-size: 0.75rem; color: var(--conexa-muted);">Fluxo comercial de agendamento e acolhimento com alta discrição.</p>
+          </div>
+          <div class="segment-card">
+            <h4 style="font-size: 0.9375rem; text-transform: uppercase; margin-bottom: 6px;">Escolas & Cursos</h4>
+            <p style="font-size: 0.75rem; color: var(--conexa-muted);">Ciclo de captação de alunos, campanhas sazonais e retenção.</p>
+          </div>
+          <div class="segment-card">
+            <h4 style="font-size: 0.9375rem; text-transform: uppercase; margin-bottom: 6px;">Clínicas Odontológicas</h4>
+            <p style="font-size: 0.75rem; color: var(--conexa-muted);">Acompanhamento de planos de tratamento e orçamentos abertos.</p>
+          </div>
+          <div class="segment-card">
+            <h4 style="font-size: 0.9375rem; text-transform: uppercase; margin-bottom: 6px;">Corretores de Imóveis</h4>
+            <p style="font-size: 0.75rem; color: var(--conexa-muted);">Gestão de carteira de imóveis e agilidade no primeiro atendimento.</p>
+          </div>
+          <div class="segment-card">
+            <h4 style="font-size: 0.9375rem; text-transform: uppercase; margin-bottom: 6px;">Estética & Beleza</h4>
+            <p style="font-size: 0.75rem; color: var(--conexa-muted);">Padronização do atendimento e rotinas recorrentes de retorno.</p>
+          </div>
+          <div class="segment-card">
+            <h4 style="font-size: 0.9375rem; text-transform: uppercase; margin-bottom: 6px;">Designers & Criativos</h4>
+            <p style="font-size: 0.75rem; color: var(--conexa-muted);">Propostas comerciais, onboarding de clientes e rotina de entregas.</p>
+          </div>
+          <div class="segment-card">
+            <h4 style="font-size: 0.9375rem; text-transform: uppercase; margin-bottom: 6px;">Serviços em Geral</h4>
+            <p style="font-size: 0.75rem; color: var(--conexa-muted);">Fluxo claro de propostas, fechamentos e alinhamento de escopo.</p>
+          </div>
+          <div class="segment-card">
+            <h4 style="font-size: 0.9375rem; text-transform: uppercase; margin-bottom: 6px;">Pequenas e Médias Empresas</h4>
+            <p style="font-size: 0.75rem; color: var(--conexa-muted);">Estruturação operacional para crescer com governança e método.</p>
+          </div>
+        </div>
+
+        <div class="quote-box">
+          <div style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: var(--conexa-gold); letter-spacing: 0.2em; margin-bottom: 8px;">Princípio Universal</div>
+          <p style="font-size: 1.5rem; font-weight: 700; line-height: 1.35; color: var(--conexa-charcoal); margin-bottom: 12px;">
+            "O segmento pode mudar. O princípio permanece: entender a operação, estruturar o processo e implementar uma solução que faça sentido para o negócio."
+          </p>
+          <p style="font-size: 0.8125rem; color: var(--conexa-muted);">
+            Apresentamos esses segmentos como exemplos onde a rotina se beneficia de processos claros. A metodologia é ajustada à realidade da sua empresa.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SEÇÃO 10 — DIFERENCIAL DA CONEXA
+         ========================================================================== -->
+    <section class="section-py bg-surface">
+      <div class="container">
+        <div>
+          <div class="kicker" style="color: var(--conexa-deep);">Diferencial Prático</div>
+          <h2 style="font-size: 2.75rem; margin-bottom: 8px;">A Conexa não fica apenas no diagnóstico.</h2>
+          <p style="font-size: 1.125rem; color: var(--conexa-muted);">
+            Compreendemos que consultorias tradicionais muitas vezes entregam relatórios densos que acabam engavetados. Nosso modelo entra na rotina.
+          </p>
+        </div>
+
+        <div class="diff-grid">
+          <!-- Apenas Diagnóstico -->
+          <div class="diff-card-trad">
+            <div style="font-size: 0.75rem; font-family: monospace; font-weight: 700; text-transform: uppercase; color: var(--conexa-muted);">Modelo Comum</div>
+            <h3 style="font-size: 1.5rem; text-transform: uppercase; margin: 4px 0 16px;">APENAS DIAGNÓSTICO</h3>
+            
+            <div class="diff-flow-list">
+              <div class="diff-step-item diff-step-trad">
+                <strong>Analisa:</strong> Entrevista a diretoria e faz anotações gerais.
+              </div>
+              <div class="diff-step-item diff-step-trad">
+                <strong>Entrega relatório:</strong> Apresenta um arquivo extenso com recomendações.
+              </div>
+              <div class="diff-step-item diff-step-trad">
+                <strong>Encerra:</strong> Deixa a equipe sozinha tentando executar as ideias.
+              </div>
+            </div>
+
+            <div style="font-size: 0.8125rem; color: var(--conexa-muted); font-style: italic;">
+              Resultado: O relatório vai para a gaveta e a operação continua no improviso.
+            </div>
+          </div>
+
+          <!-- Metodologia Conexa -->
+          <div class="diff-card-conexa">
+            <div style="font-size: 0.75rem; font-family: monospace; font-weight: 700; text-transform: uppercase; color: var(--conexa-gold);">Atuação Prática</div>
+            <h3 style="font-size: 1.75rem; text-transform: uppercase; margin: 4px 0 16px;">CONEXA</h3>
+            
+            <div class="diff-flow-list">
+              <div class="diff-step-item diff-step-conexa">
+                <strong style="color: var(--conexa-gold);">Entende & Diagnostica:</strong> Mapeamos os gargalos reais no dia a dia.
+              </div>
+              <div class="diff-step-item diff-step-conexa">
+                <strong style="color: var(--conexa-gold);">Estrutura:</strong> Desenhamos os fluxos, critérios e papéis da equipe.
+              </div>
+              <div class="diff-step-item diff-step-conexa">
+                <strong style="color: var(--conexa-gold);">Implementa:</strong> Configuramos CRM, automações e conexões necessárias.
+              </div>
+              <div class="diff-step-item diff-step-conexa">
+                <strong style="color: var(--conexa-gold);">Treina & Acompanha:</strong> Capacitamos o time e garantimos que a rotina funcione.
+              </div>
+            </div>
+
+            <div style="font-size: 0.875rem; color: var(--conexa-gold); font-weight: 600;">
+              ✓ Resultado: Processos fluindo na prática com equipe segura e independente.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SEÇÃO 11 — IMPLEMENTAÇÃO PRESENCIAL
+         ========================================================================== -->
+    <section class="section-py">
+      <div class="container in-company-grid">
+        <div class="in-company-img-wrap">
+          <img 
+            src="/src/assets/images/conexa_in_company_consulting_1790819920625.jpg" 
+            alt="Atuação presencial da equipe Conexa na operação" 
+            style="width: 100%; height: auto; aspect-ratio: 4/3; object-fit: cover;"
+          >
+          <div class="in-company-badge">Implementação Presencial</div>
+        </div>
+
+        <div>
+          <div class="kicker" style="color: var(--conexa-deep);">Atuação In-Company</div>
+          <h2 style="font-size: 2.75rem; margin-bottom: 16px; line-height: 1.2;">
+            Quando necessário, a Conexa vai até a operação.
+          </h2>
+          <p style="font-size: 1.125rem; color: var(--conexa-muted); margin-bottom: 24px; line-height: 1.6;">
+            Algumas mudanças precisam acontecer no ambiente real da empresa. Por isso, quando o projeto exige, também atuamos presencialmente para acompanhar processos, treinar a equipe e ajudar a colocar a nova estrutura em funcionamento.
+          </p>
+
+          <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 16px;">
+            <div style="display: flex; align-items: center; gap: 10px; font-weight: 600;">
+              <span style="color: var(--conexa-deep); font-size: 1.1rem;">✓</span> Treinamento da equipe no local
+            </div>
+            <div style="display: flex; align-items: center; gap: 10px; font-weight: 600;">
+              <span style="color: var(--conexa-deep); font-size: 1.1rem;">✓</span> Acompanhamento da rotina comercial real
+            </div>
+            <div style="display: flex; align-items: center; gap: 10px; font-weight: 600;">
+              <span style="color: var(--conexa-deep); font-size: 1.1rem;">✓</span> Ajustes rápidos nos processos
+            </div>
+            <div style="display: flex; align-items: center; gap: 10px; font-weight: 600;">
+              <span style="color: var(--conexa-deep); font-size: 1.1rem;">✓</span> Implementação prática com os colaboradores
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SEÇÃO 12 — TRANSFORMAÇÃO
+         ========================================================================== -->
+    <section class="section-py bg-deep">
+      <div class="container">
+        <div>
+          <div class="kicker" style="color: var(--conexa-gold);">A Transformação</div>
+          <h2 style="font-size: 2.75rem; margin-bottom: 8px;">
+            Menos improviso.<br>
+            Mais estrutura.
+          </h2>
+        </div>
+
+        <div class="trans-grid">
+          <div class="trans-card trans-card-before">
+            <div style="font-size: 0.75rem; font-family: monospace; color: #f87171; text-transform: uppercase; margin-bottom: 8px;">Cenário Comum</div>
+            <h3 style="font-size: 1.5rem; text-transform: uppercase; margin-bottom: 16px;">ANTES</h3>
+            <ul style="list-style: none; display: flex; flex-direction: column; gap: 12px; font-size: 0.9375rem; color: rgba(246, 245, 240, 0.8);">
+              <li>✕ Processos soltos e sem padrão</li>
+              <li>✕ Informações dispersas entre conversas e planilhas</li>
+              <li>✕ Rotinas manuais e retrabalho contínuo</li>
+              <li>✕ Dependência excessiva de pessoas específicas</li>
+            </ul>
+          </div>
+
+          <div class="trans-arrow" style="color: var(--conexa-gold); font-size: 2rem; font-weight: 700; text-align: center;">
+            →
+          </div>
+
+          <div class="trans-card trans-card-after">
+            <div style="font-size: 0.75rem; font-family: monospace; color: var(--conexa-gold); text-transform: uppercase; margin-bottom: 8px;">Com a Conexa</div>
+            <h3 style="font-size: 1.5rem; text-transform: uppercase; margin-bottom: 16px;">DEPOIS</h3>
+            <ul style="list-style: none; display: flex; flex-direction: column; gap: 12px; font-size: 0.9375rem; color: var(--conexa-white);">
+              <li>✓ Processos organizados e documentados</li>
+              <li>✓ CRM centralizado com histórico completo</li>
+              <li>✓ Automação onde faz sentido prático</li>
+              <li>✓ Rotinas claras e equipe autônoma</li>
+            </ul>
+          </div>
+        </div>
+
+        <div style="margin-top: 36px; text-align: center; font-size: 0.75rem; color: rgba(246, 245, 240, 0.65);">
+          * A comparação reflete a evolução de processos operacionais e governança comercial. Não realizamos promessas mágicas de faturamento: o resultado duradouro decorre da consistência da sua operação.
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SEÇÃO 13 — CASES DE ESTUDO
+         ========================================================================== -->
+    <section class="section-py">
+      <div class="container">
+        <div>
+          <div class="kicker" style="color: var(--conexa-deep);">Evidências & Rigor</div>
+          <h2 style="font-size: 2.75rem; margin-bottom: 8px;">Casos de estudo estruturados.</h2>
+          <p style="font-size: 1.125rem; color: var(--conexa-muted);">
+            Trabalhamos com transparência: não inventamos depoimentos nem resultados fictícios.
+          </p>
+        </div>
+
+        <div class="case-structure-box">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; border-bottom: 1px solid rgba(0,0,0,0.06); padding-bottom: 16px;">
+            <div>
+              <div style="font-size: 0.75rem; font-family: monospace; font-weight: 700; color: var(--conexa-gold); text-transform: uppercase;">Metodologia de Registro</div>
+              <h3 style="font-size: 1.25rem;">Como cada case é documentado:</h3>
+            </div>
+            <span style="font-size: 0.75rem; font-weight: 600; padding: 4px 10px; background: var(--conexa-offwhite); border-radius: 4px;">
+              Padrão Conexa de Auditoria
+            </span>
+          </div>
+
+          <div class="case-pillars-grid">
+            <div style="background: var(--conexa-offwhite); padding: 16px; border-radius: 8px;">
+              <span style="font-family: monospace; font-size: 0.75rem; font-weight: 700; color: var(--conexa-gold);">01</span>
+              <h4 style="font-size: 0.875rem; text-transform: uppercase; margin: 4px 0;">SEGMENTO</h4>
+              <p style="font-size: 0.75rem; color: var(--conexa-muted);">Tipo de negócio, modelo de vendas e equipe.</p>
+            </div>
+            <div style="background: var(--conexa-offwhite); padding: 16px; border-radius: 8px;">
+              <span style="font-family: monospace; font-size: 0.75rem; font-weight: 700; color: var(--conexa-gold);">02</span>
+              <h4 style="font-size: 0.875rem; text-transform: uppercase; margin: 4px 0;">DESAFIO</h4>
+              <p style="font-size: 0.75rem; color: var(--conexa-muted);">Gargalos identificados no diagnóstico inicial.</p>
+            </div>
+            <div style="background: var(--conexa-offwhite); padding: 16px; border-radius: 8px;">
+              <span style="font-family: monospace; font-size: 0.75rem; font-weight: 700; color: var(--conexa-gold);">03</span>
+              <h4 style="font-size: 0.875rem; text-transform: uppercase; margin: 4px 0;">SOLUÇÃO</h4>
+              <p style="font-size: 0.75rem; color: var(--conexa-muted);">Desenho do fluxo e regras de operação.</p>
+            </div>
+            <div style="background: var(--conexa-offwhite); padding: 16px; border-radius: 8px;">
+              <span style="font-family: monospace; font-size: 0.75rem; font-weight: 700; color: var(--conexa-gold);">04</span>
+              <h4 style="font-size: 0.875rem; text-transform: uppercase; margin: 4px 0;">IMPLEMENTAÇÃO</h4>
+              <p style="font-size: 0.75rem; color: var(--conexa-muted);">Configuração de CRM, automações e treinamento.</p>
+            </div>
+            <div style="background: var(--conexa-offwhite); padding: 16px; border-radius: 8px;">
+              <span style="font-family: monospace; font-size: 0.75rem; font-weight: 700; color: var(--conexa-gold);">05</span>
+              <h4 style="font-size: 0.875rem; text-transform: uppercase; margin: 4px 0;">RESULTADO</h4>
+              <p style="font-size: 0.75rem; color: var(--conexa-muted);">Indicadores reais e consolidados de rotina.</p>
+            </div>
+          </div>
+
+          <div style="background: rgba(18, 61, 53, 0.04); border: 1px solid rgba(18, 61, 53, 0.1); border-radius: 8px; padding: 20px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px;">
+            <div>
+              <div style="font-weight: 700; font-size: 0.875rem;">Casos de estudo em consolidação (Acordos de Sigilo / NDA)</div>
+              <p style="font-size: 0.75rem; color: var(--conexa-muted); margin-top: 2px;">
+                Respeitamos a confidencialidade das estratégias de cada cliente. Relatórios autorizados estão em fase final de homologação.
+              </p>
+            </div>
+            <a href="https://wa.me/message/57GKRVDS734WK1" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="padding: 10px 18px; font-size: 0.8125rem;">
+              Seja o próximo case estruturado
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SEÇÃO 14 — CTA FINAL
+         ========================================================================== -->
+    <section class="final-cta-section">
+      <div class="container">
+        <div class="kicker" style="color: var(--conexa-gold); margin: 0 auto 16px;">Próximo Passo</div>
+        
+        <h2 class="final-cta-title">Sua operação pode funcionar melhor.</h2>
+        
+        <p style="font-size: 1.25rem; color: rgba(246, 245, 240, 0.9); max-width: 680px; margin: 0 auto 36px; line-height: 1.5;">
+          Vamos entender como sua empresa funciona hoje e identificar onde processos, CRM e tecnologia podem ajudar.
+        </p>
+
+        <a href="https://wa.me/message/57GKRVDS734WK1" target="_blank" rel="noopener noreferrer" class="btn btn-gold" style="font-size: 1.15rem; padding: 18px 36px;">
+          <span>Quero estruturar minha operação ↗</span>
+        </a>
+
+        <div style="font-size: 0.875rem; color: rgba(246, 245, 240, 0.7); margin-top: 16px;">
+          Sem compromisso. Primeiro entendemos o seu cenário.
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==========================================================================
+       SEÇÃO 15 — FOOTER
+       ========================================================================== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <!-- Logo & Marca -->
+        <div>
+          <a href="#" style="display: inline-block; margin-bottom: 24px;">
+            <img 
+              src="https://i.ibb.co/xKstq77M/IMG-6950-removebg-preview-1.png" 
+              alt="CONEXA Gestão Estratégica" 
+              style="filter: brightness(0) invert(1); height: 100px; width: auto; object-fit: contain; opacity: 0.95; display: block; transform: scale(1.15); transform-origin: left center;"
+              referrerpolicy="no-referrer"
+            >
+          </a>
+
+          <p style="font-weight: 600; color: rgba(246, 245, 240, 0.8); margin-bottom: 8px;">
+            Pessoas • Processos • Resultados
+          </p>
+          <p style="font-size: 0.8125rem; color: rgba(246, 245, 240, 0.5); max-width: 380px;">
+            Diagnóstico, estruturação operacional, implementação de CRM, automações e capacitação presencial.
+          </p>
+        </div>
+
+        <!-- Links -->
+        <div>
+          <div style="font-family: monospace; font-size: 0.75rem; font-weight: 700; color: var(--conexa-gold); text-transform: uppercase; margin-bottom: 16px;">
+            Navegação
+          </div>
+          <ul style="list-style: none; display: flex; flex-direction: column; gap: 10px; font-size: 0.875rem; color: rgba(246, 245, 240, 0.7);">
+            <li><a href="#solucoes" style="hover: color: white;">Soluções</a></li>
+            <li><a href="#metodo">Método</a></li>
+            <li><a href="#para-empresas">Para empresas</a></li>
+            <li><a href="#sobre">Sobre</a></li>
+            <li><a href="https://wa.me/message/57GKRVDS734WK1" target="_blank" rel="noopener noreferrer">Contato</a></li>
+          </ul>
+        </div>
+
+        <!-- Canais Oficiais -->
+        <div>
+          <div style="font-family: monospace; font-size: 0.75rem; font-weight: 700; color: var(--conexa-gold); text-transform: uppercase; margin-bottom: 16px;">
+            Canais Oficiais
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 12px; font-size: 0.875rem;">
+            <a href="https://wa.me/message/57GKRVDS734WK1" target="_blank" rel="noopener noreferrer" style="display: flex; align-items: center; gap: 8px; color: rgba(246, 245, 240, 0.85);">
+              <span>💬 WhatsApp Comercial ↗</span>
+            </a>
+            <a href="https://www.instagram.com/cone_xaconsultoria/" target="_blank" rel="noopener noreferrer" style="display: flex; align-items: center; gap: 8px; color: rgba(246, 245, 240, 0.85);">
+              <span>📸 @cone_xaconsultoria ↗</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div style="padding-top: 32px; display: flex; flex-wrap: wrap; justify-content: space-between; font-size: 0.75rem; color: rgba(246, 245, 240, 0.45); gap: 12px;">
+        <p>© Conexa. Todos os direitos reservados.</p>
+        <p>Gestão Estratégica & Estruturação Operacional</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       BARRA FIXA INFERIOR PARA MOBILE
+       ========================================================================== -->
+  <div class="mobile-bottom-bar" id="mobileBottomBar">
+    <a href="https://wa.me/message/57GKRVDS734WK1" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="width: 100%; padding: 12px 20px;">
+      <span>💬 Falar com a Conexa</span>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--conexa-gold);"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+    </a>
+  </div>
+
+  <!-- ==========================================================================
+       SCRIPTS JAVASCRIPT EMBUTIDOS
+       ========================================================================== -->
+  <script>
+    // 1. Controle do Scroll na Navbar
+    const navbar = document.getElementById('mainNavbar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 20) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+
+    // 2. Menu Hambúrguer Mobile
+    const hamburgerBtn = document.getElementById('hamburgerToggle');
+    const mobileDrawer = document.getElementById('mobileDrawer');
+    const mobileLinks = document.querySelectorAll('.mobile-link');
+
+    hamburgerBtn.addEventListener('click', () => {
+      mobileDrawer.classList.toggle('open');
+    });
+
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        mobileDrawer.classList.remove('open');
+      });
+    });
+
+    // 3. Autoavaliação Interativa de Problemas & Atualização do WhatsApp
+    const selectedProblems = new Set();
+    const problemCtaBtn = document.getElementById('problemCtaBtn');
+
+    function toggleProblemCard(cardElement) {
+      const title = cardElement.getAttribute('data-title');
+      const statusText = cardElement.querySelector('.check-status-text');
+
+      if (selectedProblems.has(title)) {
+        selectedProblems.delete(title);
+        cardElement.classList.remove('selected');
+        if (statusText) statusText.textContent = 'Clique para marcar';
+      } else {
+        selectedProblems.add(title);
+        cardElement.classList.add('selected');
+        if (statusText) statusText.textContent = 'Marcado ✓';
+      }
+
+      // Atualiza link do WhatsApp dinamicamente
+      if (selectedProblems.size >= 2) {
+        const listText = Array.from(selectedProblems).join(', ');
+        const customMessage = `Olá! Fiz o diagnóstico na página da Conexa e identifiquei os seguintes desafios na minha operação: ${listText}. Gostaria de entender como podemos organizar isso.`;
+        problemCtaBtn.href = `https://wa.me/message/57GKRVDS734WK1?text=${encodeURIComponent(customMessage)}`;
+      } else {
+        problemCtaBtn.href = 'https://wa.me/message/57GKRVDS734WK1';
+      }
+    }
+  </script>
+</body>
+</html>

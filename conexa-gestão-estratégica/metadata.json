@@ -1,0 +1,6 @@
+{
+  "name": "CONEXA | Gestão Estratégica",
+  "description": "A Conexa organiza processos, estrutura sua operação comercial e implementa tecnologia para sua empresa funcionar melhor. Do diagnóstico à implementação presencial.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
